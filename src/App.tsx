@@ -4,7 +4,7 @@ import { Card } from '@material-ui/core';
 
 const App: React.FC = () => {
   React.useEffect(() => {
-    axios.get('http://localhost:8000').then(res => console.log(res));
+    axios.get('http://localhost:8080').then(res => console.log(res));
   }, []);
 
   return (
