@@ -1,3 +1,7 @@
 import { Atom } from '@dbeining/react-atom';
 
-export const State = Atom.of({});
+interface State {
+  currentUser: any;
+}
+
+export const State: Atom<State> = Atom.of(<State>{});
