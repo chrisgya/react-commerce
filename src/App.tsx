@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Card } from '@material-ui/core';
+import { Spinner, Intent, Card, Elevation } from '@blueprintjs/core';
 
 const App: React.FC = () => {
   React.useEffect(() => {
@@ -8,16 +8,12 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <Card
-      style={{
-        margin: 'auto',
-        marginTop: '5rem',
-        padding: '2rem',
-        width: '80%'
-      }}
-    >
-      App works
-    </Card>
+    <>
+      <Spinner intent={Intent.PRIMARY} />
+      <Card interactive={true} elevation={Elevation.TWO}>
+        App works
+      </Card>
+    </>
   );
 };
 
