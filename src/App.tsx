@@ -1,24 +1,20 @@
 import React from 'react';
 import axios from 'axios';
-import { Spinner, Intent, Card, Elevation } from '@blueprintjs/core';
+import { useAtom } from '@dbeining/react-atom';
 
 import { logout } from './effects/auth.effects';
+import { LoginComponent } from './components/Login.component';
 import { AppRouter } from './AppRouter';
+import { State } from './State';
 
 const App: React.FC = () => {
+  const { currentUser } = useAtom(State);
+
   React.useEffect(() => {
     axios.get('http://localhost:8080').then(res => console.log(res));
   }, []);
 
-  return (
-    <>
-      <AppRouter onLogout={logout} />
-      <Spinner intent={Intent.PRIMARY} />
-      <Card interactive={true} elevation={Elevation.TWO}>
-        App works
-      </Card>
-    </>
-  );
+  return currentUser ? <AppRouter onLogout={logout} /> : <LoginComponent />;
 };
 
 export default App;
