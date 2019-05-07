@@ -4,4 +4,8 @@ interface State {
   currentUser: any;
 }
 
-export const State: Atom<State> = Atom.of(<State>{});
+const initialState: State = {
+  currentUser: null,
+};
+
+export const State: Atom<State> = Atom.of(initialState);
