@@ -8,4 +8,4 @@ const initialState: State = {
   currentUser: null,
 };
 
-export const State: Atom<State> = Atom.of(initialState);
+export const AppState: Atom<State> = Atom.of(initialState);

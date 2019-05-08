@@ -5,10 +5,10 @@ import { useAtom } from '@dbeining/react-atom';
 import { logout } from './effects/auth.effects';
 import { LoginComponent } from './components/Login.component';
 import { AppRouter } from './AppRouter';
-import { State } from './State';
+import { AppState } from './State';
 
 const App: React.FC = () => {
-  const { currentUser } = useAtom(State);
+  const { currentUser } = useAtom(AppState);
 
   React.useEffect(() => {
     axios.get('http://localhost:8080').then(res => console.log(res));

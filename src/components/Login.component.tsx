@@ -2,10 +2,11 @@ import React from 'react';
 import { Formik, Form, Field, FieldProps } from 'formik';
 import {
   Button,
-  EditableText,
   Intent,
   Card,
   Elevation,
+  FormGroup,
+  InputGroup,
 } from '@blueprintjs/core';
 
 import { login } from '../effects/auth.effects';
@@ -20,15 +21,29 @@ export const LoginComponent: React.FC<{}> = () => {
         onSubmit={e => login(e.username, e.password)}
         render={() => (
           <Form style={{ display: 'flex', flexDirection: 'column' }}>
-            <h1 style={{ margin: 0 }}>Login</h1>
             <Field
               name="username"
-              render={({ field }: FieldProps) => <EditableText {...field} />}
+              render={({ field }: FieldProps) => (
+                <FormGroup label="Username" labelFor="username">
+                  <InputGroup
+                    {...field}
+                    id="username"
+                    placeholder="Enter username..."
+                  />
+                </FormGroup>
+              )}
             />
             <Field
               name="password"
               render={({ field }: FieldProps) => (
-                <EditableText type="password" {...field} />
+                <FormGroup label="Password" labelFor="password">
+                  <InputGroup
+                    {...field}
+                    id="password"
+                    type="password"
+                    placeholder="Enter password..."
+                  />
+                </FormGroup>
               )}
             />
             <Button type="submit" text="Submit" intent={Intent.PRIMARY} />
