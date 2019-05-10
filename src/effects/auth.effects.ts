@@ -1,7 +1,7 @@
 import { swap } from '@dbeining/react-atom';
 
 import * as auth from '../services/auth.service';
-import { AppState } from '../State';
+import { AppState } from '../AppState';
 import { LoginDTO, RegisterDTO } from '../models/auth.models';
 
 export const logout = () => {

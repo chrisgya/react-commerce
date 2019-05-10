@@ -5,7 +5,7 @@ import { useAtom } from '@dbeining/react-atom';
 import { logout } from './effects/auth.effects';
 import { LoginComponent } from './components/Login.component';
 import { AppRouter } from './AppRouter';
-import { AppState } from './State';
+import { AppState } from './AppState';
 
 const App: React.FC = () => {
   const { currentUser } = useAtom(AppState);
