@@ -10,6 +10,7 @@ import {
 } from '@blueprintjs/core';
 
 import { login } from '../effects/auth.effects';
+import { LoginDTO } from '../models/auth.models';
 
 export const LoginComponent: React.FC<{}> = () => {
   return (
@@ -18,7 +19,7 @@ export const LoginComponent: React.FC<{}> = () => {
       style={{ margin: '3rem auto', width: '80%' }}>
       <Formik
         initialValues={{ username: '', password: '' }}
-        onSubmit={e => login(e.username, e.password)}
+        onSubmit={(e: LoginDTO) => login(e)}
         render={() => (
           <Form style={{ display: 'flex', flexDirection: 'column' }}>
             <Field

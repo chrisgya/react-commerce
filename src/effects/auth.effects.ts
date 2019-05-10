@@ -1,7 +1,8 @@
-import axios from 'axios';
 import { swap } from '@dbeining/react-atom';
 
+import * as auth from '../services/auth.service';
 import { AppState } from '../State';
+import { LoginDTO, RegisterDTO } from '../models/auth.models';
 
 export const logout = () => {
   localStorage.clear();
@@ -12,17 +13,20 @@ export const logout = () => {
   }));
 };
 
-export const login = async (username: string, password: string) => {
-  // try {
-  //   const { data } = await axios.post('/login', { username, password });
+export const register = async (credentials: RegisterDTO) => {
+  const currentUser = await auth.register(credentials);
 
-  //   swap(State, state => ({
-  //     ...state,
-  //     currentUser: data,
-  //   }));
-  // } catch {}
   swap(AppState, state => ({
     ...state,
-    currentUser: { username, password },
+    currentUser,
+  }));
+};
+
+export const login = async (credentials: LoginDTO) => {
+  const currentUser = await auth.login(credentials);
+
+  swap(AppState, state => ({
+    ...state,
+    currentUser,
   }));
 };
