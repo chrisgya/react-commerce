@@ -7,21 +7,30 @@ import {
   Elevation,
   FormGroup,
   InputGroup,
+  Switch,
 } from '@blueprintjs/core';
 
-import { login } from '../effects/auth.effects';
 import { LoginDTO } from '../models/auth.models';
 
-export const LoginComponent: React.FC<{}> = () => {
+interface Props {
+  headerText: string;
+  showSellerBox: boolean;
+  onSubmit(e: any): void;
+}
+
+export const AuthComponent: React.FC<Props> = ({
+  headerText,
+  showSellerBox,
+  onSubmit,
+}) => {
   return (
-    <Card
-      elevation={Elevation.TWO}
-      style={{ margin: '3rem auto', width: '80%' }}>
+    <Card elevation={Elevation.TWO}>
       <Formik
-        initialValues={{ username: '', password: '' }}
-        onSubmit={(e: LoginDTO) => login(e)}
+        initialValues={{ username: '', password: '', seller: false }}
+        onSubmit={(e: LoginDTO) => onSubmit(e)}
         render={() => (
           <Form style={{ display: 'flex', flexDirection: 'column' }}>
+            <h2 style={{ marginTop: 0, alignSelf: 'center' }}>{headerText}</h2>
             <Field
               name="username"
               render={({ field }: FieldProps) => (
@@ -47,6 +56,18 @@ export const LoginComponent: React.FC<{}> = () => {
                 </FormGroup>
               )}
             />
+            {showSellerBox && (
+              <Field
+                name="seller"
+                render={({ field }: FieldProps) => (
+                  <Switch
+                    {...field}
+                    style={{ alignSelf: 'center' }}
+                    label="Seller?"
+                  />
+                )}
+              />
+            )}
             <Button type="submit" text="Submit" intent={Intent.PRIMARY} />
           </Form>
         )}
