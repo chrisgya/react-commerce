@@ -1,10 +1,10 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
+import { Button, Intent } from '@blueprintjs/core';
 
 import { login, register } from '../services/auth.service';
 import { AuthComponent } from '../components/Auth.component';
 import { RegisterDTO } from '../models/auth.models';
-import { Button, Intent } from '@blueprintjs/core';
-import { Link } from 'react-router-dom';
 
 interface Props {
   authType: 'login' | 'register';

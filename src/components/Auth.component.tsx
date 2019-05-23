@@ -10,7 +10,7 @@ import {
   Switch,
 } from '@blueprintjs/core';
 
-import { LoginDTO } from '../models/auth.models';
+import { RegisterDTO } from '../models/auth.models';
 
 interface Props {
   headerText: string;
@@ -23,52 +23,58 @@ export const AuthComponent: React.FC<Props> = ({
   showSellerBox,
   onSubmit,
 }) => {
+  const initialValues: RegisterDTO = {
+    username: '',
+    password: '',
+    seller: false,
+  };
+
   return (
     <Card elevation={Elevation.TWO}>
       <Formik
-        initialValues={{ username: '', password: '', seller: false }}
-        onSubmit={(e: LoginDTO) => onSubmit(e)}
+        initialValues={initialValues}
+        onSubmit={(e: RegisterDTO) => onSubmit(e)}
         render={() => (
           <Form style={{ display: 'flex', flexDirection: 'column' }}>
             <h2 style={{ marginTop: 0, alignSelf: 'center' }}>{headerText}</h2>
             <Field
-              name="username"
+              name='username'
               render={({ field }: FieldProps) => (
-                <FormGroup label="Username" labelFor="username">
+                <FormGroup label='Username' labelFor='username'>
                   <InputGroup
                     {...field}
-                    id="username"
-                    placeholder="Enter username..."
+                    id='username'
+                    placeholder='Enter username...'
                   />
                 </FormGroup>
               )}
             />
             <Field
-              name="password"
+              name='password'
               render={({ field }: FieldProps) => (
-                <FormGroup label="Password" labelFor="password">
+                <FormGroup label='Password' labelFor='password'>
                   <InputGroup
                     {...field}
-                    id="password"
-                    type="password"
-                    placeholder="Enter password..."
+                    id='password'
+                    type='password'
+                    placeholder='Enter password...'
                   />
                 </FormGroup>
               )}
             />
             {showSellerBox && (
               <Field
-                name="seller"
+                name='seller'
                 render={({ field }: FieldProps) => (
                   <Switch
                     {...field}
                     style={{ alignSelf: 'center' }}
-                    label="Seller?"
+                    label='Seller?'
                   />
                 )}
               />
             )}
-            <Button type="submit" text="Submit" intent={Intent.PRIMARY} />
+            <Button type='submit' text='Submit' intent={Intent.PRIMARY} />
           </Form>
         )}
       />
