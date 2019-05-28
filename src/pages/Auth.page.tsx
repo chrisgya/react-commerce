@@ -6,17 +6,22 @@ import { login, register } from '../services/auth.service';
 import { AuthComponent } from '../components/Auth.component';
 import { RegisterDTO } from '../models/auth.models';
 
+export enum AuthType {
+  login = 'login',
+  register = 'register',
+}
+
 interface Props {
-  authType: 'login' | 'register';
+  authType: AuthType; 
 }
 
 export const AuthPage: React.FC<Props> = ({ authType }) => {
   const handleSubmit = (e: RegisterDTO) => {
-    authType === 'login' && login(e);
-    authType === 'register' && register(e);
+    authType === AuthType.login && login(e);
+    authType === AuthType.register && register(e);
   };
 
-  const oppositeType = authType === 'register' ? 'login' : 'register';
+  const oppositeType = authType === AuthType.register ? 'login' : 'register';
 
   return (
     <>
@@ -28,9 +33,9 @@ export const AuthPage: React.FC<Props> = ({ authType }) => {
         />
       </Link>
       <AuthComponent
-        headerText={authType === 'register' ? 'Registration' : 'Login'}
+        headerText={authType === AuthType.register ? 'Registration' : 'Login'}
         onSubmit={handleSubmit}
-        showSellerBox={authType === 'register'}
+        showSellerBox={authType === AuthType.register}
       />
     </>
   );

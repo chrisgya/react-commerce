@@ -2,7 +2,7 @@ import React from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { NavComponent } from './components/Nav.component';
-import { AuthPage } from './pages/Auth.page';
+import { AuthPage, AuthType } from './pages/Auth.page';
 
 interface Props {
   onLogout?(): void;
@@ -18,12 +18,12 @@ export const AppRouter: React.SFC<Props> = ({ onLogout }) => {
           <Route
             exact
             path='/login'
-            render={() => <AuthPage authType='login' />}
+            render={() => <AuthPage authType={AuthType.login} />}
           />
           <Route
             exact
             path='/register'
-            render={() => <AuthPage authType='register' />}
+            render={() => <AuthPage authType={AuthType.register} />}
           />
           <Route path='*' render={() => <div>App Router Works!</div>} />
         </Switch>

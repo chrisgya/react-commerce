@@ -15,7 +15,7 @@ import { RegisterDTO } from '../models/auth.models';
 interface Props {
   headerText: string;
   showSellerBox: boolean;
-  onSubmit(e: any): void;
+  onSubmit(e: RegisterDTO): void;
 }
 
 export const AuthComponent: React.FC<Props> = ({
